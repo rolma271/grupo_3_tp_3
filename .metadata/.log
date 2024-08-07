@@ -1,0 +1,39 @@
+!SESSION 2024-08-07 15:02:27.383 -----------------------------------------------
+eclipse.buildId=Version 1.14.1
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-08-07 15:03:12.606
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-08-07 15:03:12.619
+!MESSAGE Log4j2 initialized with config file C:\Users\marco\Desktop\grupo_3_tp_3\grupo_3_tp_3\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-08-07 15:03:20.767
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-08-07 15:03:59.691
+!MESSAGE Indexed 'grupo_3_tp_2' (43 sources, 141 headers) in 12 sec: 17,453 declarations; 87,839 references; 1 unresolved inclusions; 203 syntax errors; 240 unresolved names (0.23%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-08-07 15:04:06.030
+!MESSAGE Indexed 'grupo_3_tp_3' (43 sources, 141 headers) in 6.33 sec: 17,453 declarations; 87,839 references; 1 unresolved inclusions; 203 syntax errors; 240 unresolved names (0.23%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-08-07 15:05:10.529
+!MESSAGE Indexed 'grupo_3_tp_3' (43 sources, 141 headers) in 4.44 sec: 17,453 declarations; 87,839 references; 1 unresolved inclusions; 203 syntax errors; 240 unresolved names (0.23%)
+!SESSION 2024-08-07 15:39:12.994 -----------------------------------------------
+eclipse.buildId=Version 1.14.1
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-08-07 15:40:05.580
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-08-07 15:40:05.584
+!MESSAGE Log4j2 initialized with config file C:\Users\marco\Desktop\rtos2\grupo_3_tp_3\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-08-07 15:40:29.744
+!MESSAGE Started RMI Server, listening on port 41337

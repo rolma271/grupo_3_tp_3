@@ -1,0 +1,73 @@
+#ifndef PRIORITY_QUEUE_H
+#define PRIORITY_QUEUE_H
+
+#include "cmsis_os.h"
+
+/**
+ * @brief Priority levels for events.
+ */
+typedef enum 
+{
+    LOW_PRIORITY,    /**< Low priority event */
+    MEDIUM_PRIORITY, /**< Medium priority event */
+    HIGH_PRIORITY    /**< High priority event */
+} 
+pq_priority_t;
+
+/**
+ * @brief Structure representing an event.
+ */
+typedef struct 
+{
+    pq_priority_t priority; /**< Priority of the event */
+} 
+pq_event_t;
+
+/**
+ * @brief Type representing the priority queue current size in events.
+ */
+typedef int pq_size_t;
+
+#define PQ_MAX_EVENT_SIZE 10 /**< Maximum size of the priority queue */
+
+/**
+ * @brief Structure representing a priority queue.
+ */
+typedef struct 
+{
+    pq_event_t 	events[PQ_MAX_EVENT_SIZE]; /**< Array of events in the queue */
+    pq_size_t 	size;                      /**< Current size of the queue */
+	
+    SemaphoreHandle_t mutex;       /**< Mutex for synchronizing access to the queue */
+    SemaphoreHandle_t eventSemaphore; /**< Semaphore for signaling event presence */
+} 
+pq_handle_t;
+
+/**
+ * @brief Create a priority queue.
+ *
+ * @return Pointer to the created priority queue, or NULL if creation failed.
+ */
+pq_handle_t *xPriorityQueueCreate(void);
+
+/**
+ * @brief Send an event to the priority queue.
+ *
+ * @param pq Pointer to the priority queue.
+ * @param event Pointer to the event to send to the queue.
+ * @param ticksToWait Maximum time to wait for space to become available.
+ * @return pdPASS if the event was successfully sent, pdFAIL otherwise.
+ */
+BaseType_t xPriorityQueueSend(pq_handle_t *pq, pq_event_t *event, TickType_t ticksToWait);
+
+/**
+ * @brief Receive an event from the priority queue.
+ *
+ * @param pq Pointer to the priority queue.
+ * @param event Pointer to store the received event.
+ * @param ticksToWait Maximum time to wait for an event.
+ * @return pdPASS if an event was successfully received, pdFAIL otherwise.
+ */
+BaseType_t xPriorityQueueReceive(pq_handle_t *pq, pq_event_t *event, TickType_t ticksToWait);
+
+#endif // PRIORITY_QUEUE_H

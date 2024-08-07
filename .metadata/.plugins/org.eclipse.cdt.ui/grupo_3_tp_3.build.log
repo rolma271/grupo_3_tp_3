@@ -1,0 +1,17 @@
+15:41:04 **** Incremental Build of configuration Debug for project grupo_3_tp_3 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Users/marco/Desktop/rtos2/grupo_3_tp_3/grupo_3_tp_3/app/inc" -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32f429zitx.d" -MT"Core/Startup/startup_stm32f429zitx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32f429zitx.o" "../Core/Startup/startup_stm32f429zitx.s"
+arm-none-eabi-gcc -o "grupo_3_tp_3.elf" @"objects.list"  -lrdimon -mcpu=cortex-m4 -T"C:\Users\marco\Desktop\rtos2\grupo_3_tp_3\grupo_3_tp_3\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="grupo_3_tp_3.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: grupo_3_tp_3.elf
+ 
+arm-none-eabi-size  grupo_3_tp_3.elf 
+arm-none-eabi-objdump -h -S grupo_3_tp_3.elf  > "grupo_3_tp_3.list"
+   text	   data	    bss	    dec	    hex	filename
+  37764	    192	  20024	  57980	   e27c	grupo_3_tp_3.elf
+Finished building: default.size.stdout
+ 
+Finished building: grupo_3_tp_3.list
+ 
+
+15:41:06 Build Finished. 0 errors, 0 warnings. (took 2s.604ms)
+
