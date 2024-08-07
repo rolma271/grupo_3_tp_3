@@ -47,8 +47,8 @@ static void _swap(pq_event_t *a, pq_event_t *b)
 static void _heapifyUp(pq_handle_t *pq, int index) 
 {
     int parentIndex = (index - 1) / 2;
-    if (parentIndex >= 0 && pq->events[index].priority < pq->events[parentIndex].priority) 
-	{
+    if (parentIndex >= 0 && pq->events[index].priority > pq->events[parentIndex].priority) 
+    {
         _swap(&pq->events[index], &pq->events[parentIndex]);
         _heapifyUp(pq, parentIndex);
     }
@@ -56,24 +56,24 @@ static void _heapifyUp(pq_handle_t *pq, int index)
 
 static void _heapifyDown(pq_handle_t *pq, int index)
 {
-    int smallest = index;
+    int largest = index;
     int leftChild = 2 * index + 1;
     int rightChild = 2 * index + 2;
 
-    if (leftChild < pq->size && pq->events[leftChild].priority < pq->events[smallest].priority) 
-	{
-        smallest = leftChild;
+    if (leftChild < pq->size && pq->events[leftChild].priority > pq->events[largest].priority) 
+    {
+        largest = leftChild;
     }
 
-    if (rightChild < pq->size && pq->events[rightChild].priority < pq->events[smallest].priority) 
-	{
-        smallest = rightChild;
+    if (rightChild < pq->size && pq->events[rightChild].priority > pq->events[largest].priority) 
+    {
+        largest = rightChild;
     }
 
-    if (smallest != index) 
-	{
-        _swap(&pq->events[index], &pq->events[smallest]);
-        _heapifyDown(pq, smallest);
+    if (largest != index) 
+    {
+        _swap(&pq->events[index], &pq->events[largest]);
+        _heapifyDown(pq, largest);
     }
 }
 
