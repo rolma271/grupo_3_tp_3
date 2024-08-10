@@ -133,7 +133,7 @@ void ao_led_init(ao_led_handle_t* hao_led)
 
 bool ao_led_send(ao_led_handle_t* hao_led, pq_event_t evt)
 {
-	return (pdPASS == xPriorityQueueSend(hao_led->hpq, (void*)&evt, (TickType_t)0U));
+	return (pdPASS == xPriorityQueueSend(hao_led->hpq, (void*)&evt, (TickType_t)10U)); //todo estimate tick count
 }
 
 /********************** end of file ******************************************/

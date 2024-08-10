@@ -132,17 +132,20 @@ BaseType_t xPriorityQueueReceive(pq_handle_t *pq, pq_event_t *event, TickType_t 
 {
     if (pdTRUE == xSemaphoreTake(pq->eventSemaphore, ticksToWait)) 
 	{
-        xSemaphoreTake(pq->mutex, portMAX_DELAY); // todo: handle error + reduce time
-        if (0 < pq->size) 
-		{
-            *event = pq->events[0];
-            pq->events[0] = pq->events[pq->size - 1];
-            pq->size--;
-            _heapifyDown(pq, 0);
-        }		
-        xSemaphoreGive(pq->mutex);
-		
-        return pdPASS;
+    	if (pdTRUE == xSemaphoreTake(pq->mutex, (TickType_t)10U)) //todo estimate tick count
+    	{
+			if (0 < pq->size)
+			{
+				// deqeue the high priority event from the heap
+				*event = pq->events[0];
+				// place a low priority at the top and rearrange the queue
+				pq->events[0] = pq->events[pq->size - 1];
+				pq->size--;
+				_heapifyDown(pq, 0);
+			}
+			xSemaphoreGive(pq->mutex);
+			return pdPASS;
+    	}
     }
     return pdFAIL;
 }
