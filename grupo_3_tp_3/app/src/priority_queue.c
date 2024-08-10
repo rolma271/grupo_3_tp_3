@@ -1,15 +1,17 @@
 /**
- * @file priority_queue.h
+ * @file priority_queue.c
  * @brief Priority Queue Library for FreeRTOS applications
  *
- * This library provides a priority queue implementation suitable for use in FreeRTOS.
- * The priority queue is implemented as a binary heap and supports operations to
- * send and receive events with varying priorities. The heap is structured as a max-heap,
- * where the event with the highest priority is always at the root.
+ * This library provides a priority queue implementation suitable for use in
+ * FreeRTOS. The priority queue is implemented as a binary heap and supports
+ * operations to send and receive events with varying priorities. The heap is
+ * structured as a max-heap, where the event with the highest priority is
+ * always at the root.
  *
- * The library includes functions to create a priority queue, send events to the queue,
- * and receive events from the queue. The library is thread-safe, utilizing FreeRTOS
- * mutexes and semaphores to synchronize access to the queue.
+ * The library includes functions to create a priority queue, send events to
+ * the queue, and receive events from the queue. The library is thread-safe,
+ * utilizing FreeRTOS mutexes and semaphores to synchronize access to the
+ * queue.
  *
  * @authors 
  * - Marco Rolón Radcenco
@@ -135,7 +137,7 @@ BaseType_t xPriorityQueueSend(pq_handle_t *pq, pq_event_t *event, TickType_t tic
             return pdFAIL;
         }
 
-	// add a new event at the bottom and rearrange 
+        // add a new event at the bottom and rearrange
         pq->events[pq->size] = *event;
         pq->size++;
         _heapifyUp(pq, pq->size - 1);
@@ -152,19 +154,19 @@ BaseType_t xPriorityQueueReceive(pq_handle_t *pq, pq_event_t *event, TickType_t 
 {
     if (pdTRUE == xSemaphoreTake(pq->eventSemaphore, ticksToWait)) 
 	{
-    	if (pdTRUE == xSemaphoreTake(pq->mutex, (TickType_t)10U)) //todo estimate tick count
+    	if (pdTRUE == xSemaphoreTake(pq->mutex, (TickType_t)1U))
     	{
-		if (0 < pq->size)
-		{
-			// dequeue the high-priority event from the heap
-			*event = pq->events[0];
-			// place a low-priority event at the top and rearrange the heap
-			pq->events[0] = pq->events[pq->size - 1];
-			pq->size--;
-			_heapifyDown(pq, 0);
-		}
-		xSemaphoreGive(pq->mutex);
-		return pdPASS;
+			if (0 < pq->size)
+			{
+				// dequeue the high-priority event from the heap
+				*event = pq->events[0];
+				// place a low-priority event at the top and rearrange the heap
+				pq->events[0] = pq->events[pq->size - 1];
+				pq->size--;
+				_heapifyDown(pq, 0);
+			}
+			xSemaphoreGive(pq->mutex);
+			return pdPASS;
     	}
     }
     return pdFAIL;

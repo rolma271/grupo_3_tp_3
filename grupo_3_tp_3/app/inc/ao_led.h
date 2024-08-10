@@ -60,9 +60,9 @@ typedef enum
 
 typedef enum
 {
-	RED   = 0U,
+	BLUE   = 0U,
   	GREEN,
-  	BLUE
+	RED
 } led_colour_t;
 
 typedef struct

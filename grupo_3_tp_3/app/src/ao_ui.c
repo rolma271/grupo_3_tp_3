@@ -81,21 +81,21 @@ static void ao_task_(void *argument)
 			{
 				case AO_UI_MESSAGE_PULSE:
 					sendEvt.priority = HIGH_PRIORITY;					
-					ao_led_send(&ao_led, sendEvt); // @todo: check return
+					ao_led_send(&ao_led, sendEvt);
 					
 					LOGGER_INFO("AO UI\t- Send a HIGH_PRIORITY event to the priority queue");
 					break;
 
 				case AO_UI_MESSAGE_SHORT:					
 					sendEvt.priority = MEDIUM_PRIORITY;					
-					ao_led_send(&ao_led, sendEvt); // @todo: check return
+					ao_led_send(&ao_led, sendEvt);
 					
 					LOGGER_INFO("AO UI\t- Send a MEDIUM_PRIORITY event to the priority queue");
 					break;
 
 				case AO_UI_MESSAGE_LONG:			
 					sendEvt.priority = LOW_PRIORITY;					
-					ao_led_send(&ao_led, sendEvt); // @todo: check return
+					ao_led_send(&ao_led, sendEvt);
 					
 					LOGGER_INFO("AO UI\t- Send a LOW_PRIORITY event to the priority queue");
 					break;

@@ -58,20 +58,20 @@
 
 ao_led_handle_t ao_led =
 				{
-					.info[RED].port 	= LD3_GPIO_Port,
-					.info[RED].pin 	= LD3_Pin,
-					.info[RED].state = GPIO_PIN_RESET,
-					.info[RED].colour = "RED",
+					.info[BLUE].port 	= LD2_GPIO_Port,
+					.info[BLUE].pin 	= LD2_Pin,
+					.info[BLUE].state 	= GPIO_PIN_RESET,
+					.info[BLUE].colour 	= "BLUE",
 
 					.info[GREEN].port 	= LD1_GPIO_Port,
 					.info[GREEN].pin 	= LD1_Pin,
-					.info[GREEN].state = GPIO_PIN_RESET,
+					.info[GREEN].state 	= GPIO_PIN_RESET,
 					.info[GREEN].colour = "GREEN",
 					
-					.info[BLUE].port 	= LD2_GPIO_Port,
-					.info[BLUE].pin 	= LD2_Pin,
-					.info[BLUE].state = GPIO_PIN_RESET,
-					.info[BLUE].colour = "BLUE",
+					.info[RED].port 	= LD3_GPIO_Port,
+					.info[RED].pin 		= LD3_Pin,
+					.info[RED].state 	= GPIO_PIN_RESET,
+					.info[RED].colour 	= "RED"
 				};
 
 /********************** internal functions declaration ***********************/
@@ -133,7 +133,7 @@ void ao_led_init(ao_led_handle_t* hao_led)
 
 bool ao_led_send(ao_led_handle_t* hao_led, pq_event_t evt)
 {
-	return (pdPASS == xPriorityQueueSend(hao_led->hpq, (void*)&evt, (TickType_t)10U)); //todo estimate tick count
+	return (pdPASS == xPriorityQueueSend(hao_led->hpq, (void*)&evt, (TickType_t)1U));
 }
 
 /********************** end of file ******************************************/
