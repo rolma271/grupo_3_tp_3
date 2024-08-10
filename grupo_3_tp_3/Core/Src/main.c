@@ -461,7 +461,8 @@ void vApplicationIdleHook(void)
 	   The idle hook is called repeatedly as long as the idle task is running. It
 	   is paramount that the idle hook function does not call any API functions
 	   that could cause it to block.*/
-//	LOGGER_LOG("  +\r\n");
+	//LOGGER_LOG("  +\r\n");
+	
 }
 
 void vApplicationTickHook(void)
@@ -472,7 +473,7 @@ void vApplicationTickHook(void)
 	   https://www.freertos.org/a00016.html
 	   vApplicationTickHook() executes from within an ISR so must be very short, not use
 	   much stack, and not call any API functions that don't end in "FromISR" or "FROM_ISR".*/
-//	LOGGER_LOG("  -\r\n");
+	//LOGGER_LOG("  -\r\n");
 }
 
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName)
@@ -481,7 +482,7 @@ void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName)
 	   configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2. This hook function is
 	   called if a stack overflow is detected.
 	   https://www.freertos.org/Stacks-and-stack-overflow-checking.html */
-	LOGGER_LOG(" Application Stack Overflow!! on Task: %s\r\n", ( char* )pcTaskName );
+	//LOGGER_LOG(" Application Stack Overflow!! on Task: %s\r\n", ( char* )pcTaskName );
 
     taskENTER_CRITICAL();
     configASSERT( 0 );   /* hang the execution for debugging purposes */

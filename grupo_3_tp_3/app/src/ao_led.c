@@ -94,15 +94,15 @@ static void ao_task_(void *argument)
 
     LOGGER_INFO("AO LED \t- Waiting event");
 
-    while (pdPASS == xPriorityQueueReceive(hao->hpq, &evt, (TickType_t)0U))
+    while (pdPASS == xPriorityQueueReceive(hao->hpq, &evt, portMAX_DELAY))
     {
-		LOGGER_INFO("AO LED \t- Receive AO_LED_MESSAGE_ON message");	
-		
+		LOGGER_INFO("AO LED \t- Receive AO_LED_MESSAGE_ON message");
+
 		HAL_GPIO_WritePin(hao->info[evt.priority].port, hao->info[evt.priority].pin, GPIO_PIN_SET);
 		LOGGER_INFO("AO LED \t- LED %s ON", hao->info[evt.priority].colour);
 		vTaskDelay(LED_ON_PERIOD_TICKS_);
-				
-		HAL_GPIO_WritePin(hao->info[evt.priority].port, hao->info[evt.priority].pin, GPIO_PIN_RESET);	
+
+		HAL_GPIO_WritePin(hao->info[evt.priority].port, hao->info[evt.priority].pin, GPIO_PIN_RESET);
 		LOGGER_INFO("AO LED \t- LED %s OFF", hao->info[evt.priority].colour);
     }
   }

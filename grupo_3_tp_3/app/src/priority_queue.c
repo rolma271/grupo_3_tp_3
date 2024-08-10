@@ -1,7 +1,6 @@
 
 /********************** inclusions *******************************************/
 #include "priority_queue.h"
-#include <string.h>
 
 /********************** macros and definitions *******************************/
 
@@ -96,7 +95,7 @@ pq_handle_t *xPriorityQueueCreate(void)
         return NULL; // Mutex creation failed
     }
 	
-    pq->eventSemaphore = xSemaphoreCreateCounting(PQ_MAX_EVENT_SIZE, PQ_MAX_EVENT_SIZE);
+    pq->eventSemaphore = xSemaphoreCreateCounting(PQ_MAX_EVENT_SIZE, 0);
     if (NULL == pq->eventSemaphore) 
 	{
 		vPortFree(pq);
@@ -133,7 +132,7 @@ BaseType_t xPriorityQueueReceive(pq_handle_t *pq, pq_event_t *event, TickType_t 
 {
     if (pdTRUE == xSemaphoreTake(pq->eventSemaphore, ticksToWait)) 
 	{
-        xSemaphoreTake(pq->mutex, portMAX_DELAY);
+        xSemaphoreTake(pq->mutex, portMAX_DELAY); // todo: handle error + reduce time
         if (0 < pq->size) 
 		{
             *event = pq->events[0];

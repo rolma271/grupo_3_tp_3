@@ -66,13 +66,13 @@ void app_init(void)
 			  "task_button",
 			  128,
 			  NULL,
-			  tskIDLE_PRIORITY,
+			  tskIDLE_PRIORITY+2,
 			  NULL
 		  );
   configASSERT(pdPASS == status);
 
   // Init UI
-  ao_ui_init(&ao_ui); 
+  ao_ui_init(&ao_ui);
 
   // Init LEDs
   ao_led_init(&ao_led);
